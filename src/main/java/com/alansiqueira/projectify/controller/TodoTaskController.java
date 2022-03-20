@@ -2,6 +2,7 @@ package com.alansiqueira.projectify.controller;
 
 import com.alansiqueira.projectify.model.TodoTask;
 import com.alansiqueira.projectify.repository.TodoTaskRepository;
+import com.alansiqueira.projectify.service.TodoTaskService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,26 +13,25 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 public class TodoTaskController {
-    private final TodoTaskRepository todoTaskRepository;
+    private final TodoTaskService todoTaskService;
 
     @GetMapping("/tasks")
-    public List<TodoTask> readAllTasks() {
-        return todoTaskRepository.findAll();
+    public ResponseEntity<List<TodoTask>> readAllTasks() {
+        return todoTaskService.getAllTasks();
     }
 
     @GetMapping(value = {"/tasks/{id}"})
-    public TodoTask readTaskByTitle(@PathVariable Long id) {
-        if (todoTaskRepository.findById(id).isPresent()) return todoTaskRepository.findById(id).get();
-        return new TodoTask(999L, "Error", "Couldn't find any task with designated ID", false);
+    public ResponseEntity<TodoTask> readTaskByTitle(@PathVariable Long id) {
+        return todoTaskService.getSingleTask(id);
     }
 
     @PostMapping("/task")
-    public TodoTask createTask(@RequestBody TodoTask todoTask) {
-        return todoTaskRepository.save(todoTask);
+    public ResponseEntity<TodoTask> createTask(@RequestBody TodoTask todoTask) {
+        return todoTaskService.createNewTask(todoTask);
     }
 
     @DeleteMapping(value = {"/task/{id}"})
-    public void deleteTask(@PathVariable Long id) {
-        todoTaskRepository.delete(todoTaskRepository.findById(id).get());
+    public ResponseEntity<TodoTask> deleteTask(@PathVariable Long id) {
+        return todoTaskService.deleteTaskFromId(id);
     }
  }
