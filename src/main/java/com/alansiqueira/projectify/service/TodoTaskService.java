@@ -21,12 +21,9 @@ public class TodoTaskService {
     public ResponseEntity<TodoTask> getSingleTask(Long id) {
         Optional<TodoTask> foundTask = todoTaskRepository.findById(id);
 
-        if(foundTask.isPresent()) {
-            return ResponseEntity.ok().body(foundTask.get());
-        }
-
-
-        return ResponseEntity.notFound().build();
+        return foundTask
+                .map(todoTask -> ResponseEntity.ok().body(todoTask))
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     public ResponseEntity<TodoTask> createNewTask(TodoTask todoTask) {

@@ -6,12 +6,14 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
-@NoArgsConstructor
-@AllArgsConstructor
 @Data
-public class TodoTask {
+@AllArgsConstructor
+@NoArgsConstructor
+public class Project {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -19,10 +21,6 @@ public class TodoTask {
     private String title;
     private String description;
 
-    @NotNull
-    @ManyToOne
-    private Project project;
-
-    @NotNull
-    private boolean isComplete;
+//    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<TodoTask> tasks;
 }
