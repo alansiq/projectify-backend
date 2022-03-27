@@ -1,13 +1,11 @@
 package com.alansiqueira.projectify.controller;
 
-import com.alansiqueira.projectify.model.TodoTask;
-import com.alansiqueira.projectify.repository.TodoTaskRepository;
+import com.alansiqueira.projectify.entity.TodoTask;
 import com.alansiqueira.projectify.service.TodoTaskService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController

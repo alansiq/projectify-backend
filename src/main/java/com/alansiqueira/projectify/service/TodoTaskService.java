@@ -1,10 +1,8 @@
 package com.alansiqueira.projectify.service;
 
-import com.alansiqueira.projectify.model.TodoTask;
+import com.alansiqueira.projectify.entity.TodoTask;
 import com.alansiqueira.projectify.repository.TodoTaskRepository;
-import com.sun.xml.bind.v2.TODO;
 import lombok.AllArgsConstructor;
-import org.apache.catalina.connector.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 

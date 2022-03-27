@@ -1,4 +1,4 @@
-package com.alansiqueira.projectify.model;
+package com.alansiqueira.projectify.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
