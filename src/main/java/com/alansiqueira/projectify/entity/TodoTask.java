@@ -1,6 +1,7 @@
 package com.alansiqueira.projectify.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,6 +12,7 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@Builder
 public class TodoTask {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,8 +21,8 @@ public class TodoTask {
     private String title;
     private String description;
 
-    @NotNull
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Project.class)
+    @JoinColumn(name = "projectId", referencedColumnName = "id")
     private Project project;
 
     @NotNull
