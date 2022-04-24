@@ -14,8 +14,8 @@ import java.util.Optional;
 public class TodoTaskService {
     private final TodoTaskRepository todoTaskRepository;
 
-    public ResponseEntity<List<TodoTask>> getAllTasks() {
-        return ResponseEntity.ok().body(todoTaskRepository.findAll());
+    public List<TodoTask> getAllTasks() {
+        return todoTaskRepository.findAll();
     }
 
     public ResponseEntity<TodoTask> getSingleTask(Long id) {
@@ -26,8 +26,8 @@ public class TodoTaskService {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    public ResponseEntity<TodoTask> createNewTask(TodoTask todoTask) {
-        return ResponseEntity.ok().body(todoTaskRepository.save(todoTask));
+    public TodoTask createNewTask(TodoTask todoTask) {
+        return todoTaskRepository.save(todoTask);
     }
 
     public ResponseEntity<TodoTask> deleteTaskFromId(Long id) {
