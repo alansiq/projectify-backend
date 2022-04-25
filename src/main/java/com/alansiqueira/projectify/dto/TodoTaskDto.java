@@ -28,7 +28,7 @@ public class TodoTaskDto {
                 .build();
     }
 
-    public static List<TodoTaskDto> convertList(List<TodoTask> todoTaskList) {
+    public static List<TodoTaskDto> convert(List<TodoTask> todoTaskList) {
         return todoTaskList.stream().map(TodoTaskDto::convert).collect(Collectors.toList());
     }
 }

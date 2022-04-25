@@ -18,26 +18,22 @@ public class TodoTaskService {
         return todoTaskRepository.findAll();
     }
 
-    public ResponseEntity<TodoTask> getSingleTask(Long id) {
+    public TodoTask getSingleTask(Long id) {
         Optional<TodoTask> foundTask = todoTaskRepository.findById(id);
-
-        return foundTask
-                .map(todoTask -> ResponseEntity.ok().body(todoTask))
-                .orElseGet(() -> ResponseEntity.notFound().build());
+        return foundTask.orElse(null);
     }
 
     public TodoTask createNewTask(TodoTask todoTask) {
         return todoTaskRepository.save(todoTask);
     }
 
-    public ResponseEntity<TodoTask> deleteTaskFromId(Long id) {
+    public TodoTask deleteTaskFromId(Long id) {
         Optional<TodoTask> foundTask = todoTaskRepository.findById(id);
-
-        if (foundTask.isPresent()) {
-            todoTaskRepository.delete(foundTask.get());
-            return ResponseEntity.ok().body(foundTask.get());
+        try {
+            todoTaskRepository.deleteById(id);
+        } catch (IllegalArgumentException e) {
+            return null;
         }
-
-        return ResponseEntity.notFound().build();
+        return foundTask.orElse(null);
     }
 }
