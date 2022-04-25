@@ -3,6 +3,9 @@ package com.alansiqueira.projectify.dto;
 import com.alansiqueira.projectify.entity.Project;
 import lombok.*;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Getter
 @Setter
 @Builder
@@ -19,5 +22,9 @@ public class ProjectDto {
                 .title(project.getTitle())
                 .description(project.getDescription())
                 .build();
+    }
+
+    public static List<ProjectDto> convert(List<Project> projectList) {
+        return projectList.stream().map(ProjectDto::convert).collect(Collectors.toList());
     }
 }

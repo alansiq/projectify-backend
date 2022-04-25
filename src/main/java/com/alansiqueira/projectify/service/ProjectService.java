@@ -1,5 +1,6 @@
 package com.alansiqueira.projectify.service;
 
+import com.alansiqueira.projectify.dto.NewProjectDto;
 import com.alansiqueira.projectify.entity.Project;
 import com.alansiqueira.projectify.repository.ProjectRepository;
 import lombok.AllArgsConstructor;
@@ -17,4 +18,8 @@ public class ProjectService {
     }
 
     public Project getProject(Long id) { return projectRepository.findById(id).orElse(null);}
+
+    public Project create(Project project) {
+        return projectRepository.save(project);
+    }
 }
