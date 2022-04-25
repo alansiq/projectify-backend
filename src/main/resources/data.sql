@@ -1,9 +1,3 @@
-INSERT INTO PROJECT(title) VALUES ('Learn Java');
-INSERT INTO PROJECT(title) VALUES ('Learn Go');
--- INSERT INTO TODO_TASK(title, description, is_complete) VALUES('Create a fancy to-do app', 'it should be fancy af' , true);
--- INSERT INTO TODO_TASK(title, description, is_complete) VALUES('Create a fancy to-do app', 'it should be fancy af' , true);
--- INSERT INTO TODO_TASK(title, description, is_complete) VALUES('Create a fancy to-do app', 'it should be fancy af' , true);
--- INSERT INTO TODO_TASK(title, description, is_complete) VALUES('Create a fancy to-do app', 'it should be fancy af' , false);
--- INSERT INTO TODO_TASK(title, description, is_complete) VALUES('Create a fancy to-do app', 'it should be fancy af' , false);
--- INSERT INTO TODO_TASK(title, description, is_complete) VALUES('Create a fancy to-do app', 'it should be fancy af' , true);
--- INSERT INTO TODO_TASK(title, description, is_complete) VALUES('Create a fancy to-do app', 'it should be fancy af' , true);
+INSERT INTO PROJECT(title, description) VALUES ('Learn Java', 'Master java and spring boot');
+INSERT INTO PROJECT(title, description) VALUES ('Learn Go', 'Learn more about Gorilla mux');
+INSERT INTO TODO_TASK(title, description, is_complete, project_id) VALUES('Create a fancy to-do app', 'it should be fancy af' , true, 1);

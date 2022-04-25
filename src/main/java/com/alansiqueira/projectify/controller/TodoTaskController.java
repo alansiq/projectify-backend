@@ -20,7 +20,7 @@ public class TodoTaskController {
     private final TodoTaskService todoTaskService;
     private final TodoTaskFactory todoTaskFactory;
 
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<List<TodoTaskDto>> readAllTasks() {
         List<TodoTask> todoTaskList =  todoTaskService.getAllTasks();
         List<TodoTaskDto> resultTodoTaskList = TodoTaskDto.convert(todoTaskList);
@@ -37,7 +37,7 @@ public class TodoTaskController {
         return ResponseEntity.ok().body(response);
     }
 
-    @PostMapping("/task")
+    @PostMapping
     public ResponseEntity<TodoTaskDto> createTask(@RequestBody NewTodoTaskDto todoTask) {
         TodoTask createdTask = todoTaskFactory.create(todoTask);
 

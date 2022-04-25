@@ -18,7 +18,7 @@ import java.util.List;
 public class ProjectController {
     private final ProjectFactory projectFactory;
 
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<List<ProjectDto>> getAllProjects() {
         List<Project> projectList = projectFactory.getProject();
         List<ProjectDto> projectDtoList = ProjectDto.convert(projectList);
@@ -33,7 +33,7 @@ public class ProjectController {
         return ResponseEntity.ok(projectResponse);
     }
 
-    @PostMapping("/")
+    @PostMapping
     public ResponseEntity<ProjectDto> createProject(@Valid @RequestBody NewProjectDto newProjectDto) {
         Project project = projectFactory.create(newProjectDto);
         ProjectDto projectResponse = ProjectDto.convert(project);

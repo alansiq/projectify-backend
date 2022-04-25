@@ -1,7 +1,6 @@
 package com.alansiqueira.projectify.factory;
 
 import com.alansiqueira.projectify.dto.NewProjectDto;
-import com.alansiqueira.projectify.dto.ProjectDto;
 import com.alansiqueira.projectify.entity.Project;
 import com.alansiqueira.projectify.service.ProjectService;
 import lombok.AllArgsConstructor;
