@@ -40,4 +40,13 @@ public class ProjectController {
         return ResponseEntity.status(HttpStatus.CREATED).body(projectResponse);
     }
 
+    @DeleteMapping("/{projectId}")
+    public ResponseEntity<ProjectDto> deleteProject(@PathVariable Long projectId) {
+        Project project = projectFactory.remove(projectId);
+        if (project == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(ProjectDto.convert(project));
+    }
+
 }

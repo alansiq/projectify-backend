@@ -13,6 +13,10 @@ import java.util.List;
 public class ProjectService {
     private final ProjectRepository projectRepository;
 
+    public void remove(Project project) throws IllegalArgumentException {
+        projectRepository.delete(project);
+    }
+
     public List<Project> getProjectList() {
         return projectRepository.findAll();
     }

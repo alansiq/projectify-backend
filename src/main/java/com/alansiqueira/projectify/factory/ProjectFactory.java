@@ -29,4 +29,15 @@ public class ProjectFactory {
 
         return projectService.create(convertedProject);
     }
+
+    public Project remove(Long projectId) {
+        Project project = this.getProject(projectId);
+        if (project == null) return null;
+        try {
+            projectService.remove(project);
+            return project;
+        } catch (IllegalArgumentException e) {
+            return null;
+        }
+    }
 }
