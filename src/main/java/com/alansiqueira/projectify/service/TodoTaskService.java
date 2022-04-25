@@ -14,33 +14,26 @@ import java.util.Optional;
 public class TodoTaskService {
     private final TodoTaskRepository todoTaskRepository;
 
-    public ResponseEntity<List<TodoTask>> getAllTasks() {
-        return ResponseEntity.ok().body(todoTaskRepository.findAll());
+    public List<TodoTask> getAllTasks() {
+        return todoTaskRepository.findAll();
     }
 
-    public ResponseEntity<TodoTask> getSingleTask(Long id) {
+    public TodoTask getSingleTask(Long id) {
         Optional<TodoTask> foundTask = todoTaskRepository.findById(id);
-
-        if(foundTask.isPresent()) {
-            return ResponseEntity.ok().body(foundTask.get());
-        }
-
-
-        return ResponseEntity.notFound().build();
+        return foundTask.orElse(null);
     }
 
-    public ResponseEntity<TodoTask> createNewTask(TodoTask todoTask) {
-        return ResponseEntity.ok().body(todoTaskRepository.save(todoTask));
+    public TodoTask createNewTask(TodoTask todoTask) {
+        return todoTaskRepository.save(todoTask);
     }
 
-    public ResponseEntity<TodoTask> deleteTaskFromId(Long id) {
+    public TodoTask deleteTaskFromId(Long id) {
         Optional<TodoTask> foundTask = todoTaskRepository.findById(id);
-
-        if (foundTask.isPresent()) {
-            todoTaskRepository.delete(foundTask.get());
-            return ResponseEntity.ok().body(foundTask.get());
+        try {
+            todoTaskRepository.deleteById(id);
+        } catch (IllegalArgumentException e) {
+            return null;
         }
-
-        return ResponseEntity.notFound().build();
+        return foundTask.orElse(null);
     }
 }
