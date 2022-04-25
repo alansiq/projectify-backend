@@ -15,12 +15,14 @@ public class ProjectDto {
     private Long id;
     private String title;
     private String description;
+    private List<NoProjectTodoTaskDto> todoTaskList;
 
     public static ProjectDto convert(Project project) {
         return ProjectDto.builder()
                 .id(project.getId())
                 .title(project.getTitle())
                 .description(project.getDescription())
+                .todoTaskList(project.getTaskList() != null ? NoProjectTodoTaskDto.convert(project.getTaskList()): null)
                 .build();
     }
 
